@@ -1,10 +1,28 @@
 <?php
+
 include "partials/header.php";
 include "partials/navigation.php";
+
 if(is_user_logged_in()){
-    header("Location: admin.php");
+    if(is_admin()){
+        header("Location: admin.php");
+    }else{
+        header("Location: student_portal.php");
+    }
     exit;
 }
+
+// if(is_user_logged_in()){
+//     header("Location: student_portal.php");
+//     exit;
+// }
+
+// if(is_admin()){
+//     header("Location: admin.php");
+//     exit;
+// }
+
+
 $error = "";
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
@@ -18,7 +36,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         if(password_verify($password, $user['password'])){
             $_SESSION['logged_in'] = true;
             $_SESSION['username'] = $user['username'];
-            redirect("admin.php");
+            $_SESSION['role'] = $user['role'];
+
+            if($user['role'] === 'admin'){
+                header("Location: admin.php");
+            }else{
+                header("Location: student_portal.php");
+                }
+           
             exit;
         } else {
             $error =  "Invalid username or password";

@@ -1,10 +1,32 @@
 <?php
+//session_start();
+//require_once 'functions.php'; // where isAdmin() lives
+
 include "partials/header.php";
 include "partials/navigation.php";
 
-if(!is_user_logged_in()){
-    redirect("login.php");
+// Not logged in → go to homepage
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header('Location: index.php');
+    exit;
 }
+
+// Logged in but not admin → go to student portal
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header('Location: student_portal.php');
+    exit;
+}
+
+
+
+
+
+
+// if(!is_user_logged_in()){ 
+//     redirect("login.php");
+// }
+
+
 
 $result = mysqli_query($conn, "SELECT id, username, usersurname, email, reg_date FROM users");
 
@@ -68,7 +90,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST") {
 
         <?php while ($user = mysqli_fetch_assoc($result)): ?>
         <tr>
-            <td><?php echo $user['id'];  ?></td>
+            <td><?php echo $user['id'];  ?></td> 
             <td><?php echo $user['username'];  ?></td>
             <td><?php echo $user['email'];  ?></td>
             <td><?php echo full_month_date($user['reg_date']); ?>

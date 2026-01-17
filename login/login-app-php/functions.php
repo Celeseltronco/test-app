@@ -1,11 +1,22 @@
 <?php
 
+
+function is_admin() {
+    return isset($_SESSION['logged_in'], $_SESSION['role'])
+           && $_SESSION['logged_in'] === true
+           && $_SESSION['role'] === 'admin';
+}
+
 function is_user_logged_in(){
     return isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
 }
 
+// function is_admin(){
+//     return isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
+// }
+
 function redirect($location){
-    header("Location: login.php");
+    header("Location: login.php"); 
     exit;
 }
 function setActiveCLass($pageName){
