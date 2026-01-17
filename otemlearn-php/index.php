@@ -5,7 +5,7 @@ include "partials/navigation.php";
 ?>
 
 <!-- Main container -->
-<div class="container">
+<div class="container">  
 
     <!-- Hero section -->
     <div class="hero">

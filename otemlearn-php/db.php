@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 $db["db_host"] = "localhost";
 $db["db_user"] = "root";
 $db["db_pass"] = "root";
-$db["db_name"] = "login_app";
+$db["db_name"] = "otemlearn";
 
 foreach($db as $key => $value){
     define(strtoupper($key), $value);

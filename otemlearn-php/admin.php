@@ -82,7 +82,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST") {
             <th>Username</th>
             
             <th>Email</th>
-            <th>Registration Date</th>
+            <th>Registration Date</th> 
             <th>Actions</th>
         </tr>
         </thead>

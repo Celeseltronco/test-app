@@ -201,5 +201,5 @@ nav ul li a:hover {
 
 nav ul li a.active {
     background-color: #575757;
-    color: yellow;
+    color: yellow; 
 }
